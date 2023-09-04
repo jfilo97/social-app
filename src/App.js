@@ -9,7 +9,7 @@ import AppRoutes from './routes/AppRoutes';
 function App() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-console.log(user)
+  
   axios.defaults.headers.common['Authorization'] = "Bearer " + (user ? user.jwt_token : "")
 
   return (

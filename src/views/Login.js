@@ -22,19 +22,19 @@ const Login = (props) => {
             [name]: target.value,
         });
     };
- 
+
     const handleSubmit = (e) => {
         e.prevenDefault();
         axios
-            .post("http://akademia108.pl/api/social-app/user/login", {
+            .post("https://akademia108.pl/api/social-app/user/login", {
                 username: formData.username,
                 password: formData.password
             })
             .then((res) => {
 
-                if(Array.isArray(res.data.username)) {
+                if (Array.isArray(res.data.username)) {
                     setLoginMessage(res.data.username[0]);
-                } else if(Array.isArray(res.data.password)) {
+                } else if (Array.isArray(res.data.password)) {
                     setLoginMessage(res.data.password[0]);
                 } else if (res.data.error) {
                     setLoginMessage("Incorrect username or password");
@@ -54,12 +54,24 @@ const Login = (props) => {
             {props.user && <Navigate to="/" />}
             <form onSubmit={handleSubmit}>
                 {loginMessege && <h2>{loginMessege}</h2>}
-                <input type="text" name="username" placeholder="User name" value={formData.username} onChange={handleInputChange} />
-                <input type="passwoerd" name="passwoer" placeholder="Password" value={formData.username} onChange={handleInputChange} />
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="User name"
+                    value={formData.username}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                />
                 <button className="btn">Login</button>
             </form>
         </div>
-    )
-}
+    );
+};
 
 export default Login;
