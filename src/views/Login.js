@@ -24,7 +24,7 @@ const Login = (props) => {
     };
 
     const handleSubmit = (e) => {
-        e.prevenDefault();
+        e.preventDefault();
         axios
             .post("https://akademia108.pl/api/social-app/user/login", {
                 username: formData.username,
